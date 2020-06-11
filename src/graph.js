@@ -20,6 +20,20 @@ const modifyJsonFormat = (pairs) => {
 
 const bfs = function(pairs, source, target) {
   const new_pairs = modifyJsonFormat(pairs);
+  const queue = [source];
+  const visited = new Set();
+  let element;
+  while (element !== target && queue.length !== 0) {
+    element = queue.shift();
+    const elements = new_pairs[element];
+    for (let i = 0; elements && i < elements.length; i++) {
+      if (!(visited.has(elements[i]) || queue.includes(elements[i]))) {
+        queue.push(elements[i]);
+      }
+    }
+    visited.add(element);
+  };
+  return element === target;
 };
 
 module.exports = { bfs };
