@@ -2,7 +2,7 @@ const assert = require("assert");
 const { bfs } = require("../src/graph");
 
 describe('bfs', () => {
-  const pairs = [["aa", "bb"], ["aa", "dd"], ["dd", "cc"], ["cc", "bb"]];
+  const pairs = [["aa", "bb"], ["aa", "dd"], ["dd", "cc"], ["cc", "bb"], ["bb", "dd"]];
 
   it('should return false when target is not present in graph', function() {
     assert.ok(!bfs(pairs, "aa", "jj"));
@@ -12,7 +12,11 @@ describe('bfs', () => {
     assert.ok(!bfs(pairs, "dd", "aa"));
   });
 
-  it('should return true when source and target are same', function() {
+  it('should return false when source and target are same and not connected to itself', function() {
+    assert.ok(!bfs(pairs, "aa", "aa"));
+  });
+
+  it('should return true when source and target are same and connected to itself', function() {
     assert.ok(bfs(pairs, "dd", "dd"));
   });
 

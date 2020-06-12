@@ -20,7 +20,8 @@ const modifyJsonFormat = (pairs) => {
 
 const bfs = function(pairs, source, target) {
   const new_pairs = modifyJsonFormat(pairs);
-  const queue = new_pairs[source];
+  const queue = [];
+  queue.push(...(new_pairs[source] || []));
   const visited = new Set();
   let element;
   while (element !== target && queue.length !== 0) {
@@ -32,7 +33,7 @@ const bfs = function(pairs, source, target) {
         queue.push(elements[i]);
       }
     }
-  };
+  }
   return element === target;
 };
 
