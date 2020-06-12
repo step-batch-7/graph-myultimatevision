@@ -20,7 +20,7 @@ const modifyJsonFormat = (pairs) => {
 
 const bfs = function(pairs, source, target) {
   const new_pairs = modifyJsonFormat(pairs);
-  const queue = [source];
+  const queue = new_pairs[source];
   const visited = new Set();
   let element;
   while (element !== target && queue.length !== 0) {
