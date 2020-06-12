@@ -25,13 +25,13 @@ const bfs = function(pairs, source, target) {
   let element;
   while (element !== target && queue.length !== 0) {
     element = queue.shift();
+    visited.add(element);
     const elements = new_pairs[element];
     for (let i = 0; elements && i < elements.length; i++) {
       if (!(visited.has(elements[i]) || queue.includes(elements[i]))) {
         queue.push(elements[i]);
       }
     }
-    visited.add(element);
   };
   return element === target;
 };
